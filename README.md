@@ -8,3 +8,11 @@
 
 ## 目录
 #### [JavaScript](docs/JavaScript.md)
+
+
+## 贡献
+本仓库目前由shan-er个人维护，如有问题，欢迎提issues或pull request。
+
+
+## 支持作者
+如果本面试题，对你有帮助的话，送颗star吧，如若想持续关注，请点watch。
