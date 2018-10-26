@@ -28,7 +28,10 @@
 
 闭包作用通俗的讲：一是可以读取函数内部的变量，另一个就是让这些变量的值始终保持在内存中，不会在这个作用域函数调用后被自动清除。
 
-<span style="color: grey">关联点： 作用域 -> 作用域链</span>
+<span style="color: grey">
+
+    关联点： 作用域 -> 作用域链
+</span>
 
 
 ### 什么是原型链？
@@ -36,13 +39,16 @@
 
 作用：用来实现共享属性和继承。
 
-<span style="color: grey">关联点： 继承、对象（普通对象/函数对象）、构造函数</span>
+<span style="color: grey">
+
+    关联点： 继承、对象（普通对象/函数对象）、构造函数
+</span>
 <p style="color: grey">
 
     对象
 
     普通对象：
-    - 最普通的对象：有__proto__属性（指向其原型链），没有prototype属性。
+    - 最普通的对象：有__proto__属性（指向其原型链），没有prototype属性。
     - 原型对象(person.prototype 原型对象还有constructor属性（指向构造函数对象）)
 
     函数对象：
@@ -61,7 +67,10 @@
 
 深浅拷贝的区别，其实核心的关键点就是是**只复制了第一属性还是完全复制了所有的属性。**
 
-<span style="color: grey">关联点： 变量类型（基本数据类型、引用数据类型）</span>
+<span style="color: grey">
+
+    关联点： 变量类型（基本数据类型、引用数据类型）
+</span>
 
 
 ### sessionStorage,localStorage,cookie区别
@@ -76,4 +85,7 @@
 8. 浏览器不能保存超过300个cookie，单个服务器不能超过20个，每个cookie不能超过4k。web storage大小支持能达到5M或更大
 9. web storage支持事件通知机制，可以将数据更新的通知发送给监听者。
 
-<span style="color: grey">关联点： 离线缓存等</span>
+<span style="color: grey">
+
+    关联点： 离线缓存等
+</span>
