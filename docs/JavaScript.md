@@ -1,16 +1,16 @@
 ## JavaScript
 
 - [概念相关](#概念相关)
-    - [什么是闭包，用途](#什么是闭包，用途)
+    - [什么是闭包及用途](#什么是闭包及用途)
     - [什么是原型链](#什么是原型链)
     - [什么是深浅拷贝](#什么是深浅拷贝)
-    - [sessionStorage，localStorage，cookie区别](#sessionStorage，localStorage，cookie区别)
+    - [sessionStorage，localStorage，cookie区别](#sessionStorage-localStorage-cookie区别)
 - [编程相关](#编程相关)
     - [实现深拷贝](#实现深拷贝)
 
 
 
-### 什么是闭包，用途
+### 什么是闭包及用途
 **闭包是在某个作用域内定义的函数，它可以访问这个作用域内的所有变量。**
 
 在javascript中，只有函数内部的子函数才能读取局部变量，所以<span style="color: #fcead8">闭包可以理解成“定义在一个函数内部的函数”</span>。
@@ -73,7 +73,7 @@
 </span>
 
 
-### sessionStorage，localStorage，cookie区别
+### sessionStorage-localStorage-cookie区别
 
 1. 都会在浏览器端保存，有大小限制，同源限制
 2. cookie会在请求时发送到服务器，作为会话标识，服务器可修改cookie；web storage用来存储客户端临时信息对象，不会发送到服务器
