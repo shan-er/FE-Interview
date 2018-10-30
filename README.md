@@ -7,14 +7,14 @@
 
 
 ## 目录
-#### [JavaScript](docs/JavaScript.md)
-#### [HTML(5)](docs/Html.md)
-#### [CSS(3)](docs/Css.md)
-#### [性能相关](docs/Performance.md)
-#### [React](docs/React.md)
-#### [Vue](docs/Vue.md)
-#### [构建工具（webpack/gulp/grunt）](docs/Pack.md)
-#### [ES6+](docs/ES6.md)
+#### [JavaScript](docs/JavaScript.md): 一种直译式脚本语言，是一种动态类型、弱类型、基于原型的语言，内置支持类型
+#### [HTML(5)](docs/Html.md): 超文本标记语言，标准通用标记语言下的一个应用
+#### [CSS(3)](docs/Css.md): 层叠样式表(英文全称：Cascading Style Sheets)是一种用来表现HTML（标准通用标记语言的一个应用）或XML（标准通用标记语言的一个子集）等文件样式的计算机语言
+#### [性能相关](docs/Performance.md): 性能监测、分析及优化
+#### [React](docs/React.md): 用于构建用户界面的 JavaScript 库
+#### [Vue](docs/Vue.md): 一套用于构建用户界面的渐进式框架
+#### [构建工具（webpack/gulp/grunt）](docs/Pack.md): 帮助我们实现一系列项目管理、测试和部署操作的工具
+#### [ES6+](docs/ES6.md): JavaScript语言的标准
 
 ## 贡献
 本仓库目前由shan-er个人维护，如有问题，欢迎提issues或pull request。
