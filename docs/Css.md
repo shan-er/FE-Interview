@@ -22,7 +22,7 @@
 文章原文及DEMO实现： [CSS实现水平垂直居中](https://blog.csdn.net/Scarlett_Dream/article/details/83416029)
 
 #### 1. 水平居中
-1. 元素为行内元素，设置父元素 ```text-align:center```;
+1. 1)元素为行内元素，设置父元素 ```text-align:center```;
 2. 如果水平居中元素为块级固定，则需设置```margin: 0 auto```;(IE6下需在父元素上设置text-align: center;,再给子元素恢复需要的值)
 3. 如果元素为绝对定位，法一：设置父元素position为relative，元素设left:0;right:0;margin:auto;
 法二：设置父元素position为relative，负值的margin-left, 设置子元素;
