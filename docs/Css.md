@@ -3,6 +3,7 @@
 - [渐进增强和优雅降级](#渐进增强和优雅降级)
 - [CSS选择器及优先级及权重](#CSS选择器及优先级及权重)
 - [水平垂直居中](#水平垂直居中)
+- [常见兼容性问题](#常见兼容性问题)
 
 
 ### 渐进增强和优雅降级
@@ -40,3 +41,32 @@
 
     关联点： 浮动及清除、定位（相对定位、绝对定位等）、盒模型、行內元素与块级元素
 </span>
+
+### 常见兼容性问题
+1. png24位的图片在IE6浏览器上出现背景；
+
+    解决方案是：做成PNG8；
+
+2. 浏览器默认的 margin 和 padding 不同。
+    
+    解决方案是：加一个全局的*{margin:0;padding:0;}来统一。
+
+3. IE6双边距bug：块属性标签float后，又有横行的 margin 情况下，在 IE6 显示 margin 比设置的大。浮动IE产生的双倍距离 #box{float:left;width:10px;margin:0 0 0 100px;} 这种情况下IE6会产生200px的距离。
+    
+    解决方法：加上_display：inline，使浮动忽略
+
+4. IE下，可以使用获取常规属性的方法来获取自定义属性，也可以使用getAttribute()获取自定义属性； Firefox下，只能使用getAttribute()获取自定义属性。
+    
+    解决方法：统一通过getAttribute()获取自定义属性。
+
+5. IE下，even对象有x，y属性，但是没有pageX，pageY属性，但是没有x，y属性；
+    
+    解决方法：（条件注释）缺点是在IE浏览器下可能会增加额外的HTTP请求数。
+
+6. Chrome中文界面下默认会将小于 12px 的文本强制按照 12px 显示
+    
+    解决方法：可通过加入 CSS 属性 -webkt-text-size-adjust:none;解决
+
+7. 超链接访问过后 hover 样式就不出现了，被点击访问过的超链接样式不在具有 hover 和 active ；
+    
+    解决方法：改变CSS属性的排列顺序：L-V-H-A: a:link{ }  a:visited{ } a:hover{ } a:active{ } 
