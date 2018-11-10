@@ -5,8 +5,10 @@
     - [什么是原型链](#什么是原型链)
     - [什么是深浅拷贝](#什么是深浅拷贝)
     - [sessionStorage，localStorage，cookie区别](#sessionStorage-localStorage-cookie区别)
+    - [数组中常用的方法](#数组中常用的方法)
 - [编程相关](#编程相关)
     - [实现深拷贝](#实现深拷贝)
+    - [实现千分位方法](#实现千分位方法)
 
 
 
@@ -89,3 +91,105 @@
 
     关联点： 离线缓存等
 </span>
+
+
+### 数组中常用的方法
+详情清查看链接 [js数组常用方法 ES5/ES6+](https://blog.csdn.net/Scarlett_Dream/article/details/83927914)
+1. ES5及以下: join、reverse、push、pop、unshift、shift、sort、concat、slice、splice、toString、toLocaleString、indexOf、lastIndexOf、forEach、map、filter、some、every、reduce、reduceRight
+2. ES6及以上: Array.from、Array.of、copyWithin、find、findIndex、fill、entries、keys、values、includes、flat、flatMap
+
+
+### 实现深拷贝
+#### 1. JSON方法
+```
+let obj = {
+    name: '张三',
+    score: {
+        english: 94,
+        chinese: 93,
+        math: 100
+    }
+};
+
+function deepClone(obj) {
+    return JSON.parse(JSON.stringify(obj));
+}
+
+let newObj = deepClone(obj);
+newObj['age'] = 12;
+console.log(newObj, obj);
+```
+
+#### 2. for循环遍历（递归）
+```
+let obj = {
+    name: '张三',
+    score: {
+        english: 94,
+        chinese: 93,
+        math: 100
+    }
+};
+
+function deepClone(obj){
+    let objClone = Array.isArray(obj)?[]:{};
+    if(obj && typeof obj==="object"){
+        for(key in obj){
+            if(obj.hasOwnProperty(key)){
+                //判断ojb子元素是否为对象，如果是，递归复制
+                if(obj[key]&&typeof obj[key] ==="object"){
+                    objClone[key] = deepClone(obj[key]);
+                }else{
+                    //如果不是，简单复制
+                    objClone[key] = obj[key];
+                }
+            }
+        }
+    }
+    return objClone;
+}
+
+let newObj = deepClone(obj);
+newObj['age'] = 12;
+console.log(newObj, obj);
+```
+
+#### 3. jquery $.extend方法。
+```
+$.extend( [deep ], target, object1 [, objectN ] )
+
+deep表示是否深拷贝，为true为深拷贝，为false，则为浅拷贝
+target Object类型 目标对象，其他对象的成员属性将被附加到该对象上。
+object1  objectN可选。 Object类型 第一个以及第N个被合并的对象。
+```
+
+```
+let obj = {
+    name: '张三',
+    score: {
+        english: 94,
+        chinese: 93,
+        math: 100
+    }
+};
+
+function deepClone(obj){
+    return $.extend(true, [], obj);
+}
+
+let newObj = deepClone(obj);
+newObj['age'] = 12;
+console.log(newObj, obj);
+```
+
+#### 4.lodash函数库实现深拷贝
+```
+lodash.cloneDeep()
+```
+
+<span style="color: grey">
+
+    关联点： 深浅拷贝、Object.assign()、各方法优劣等
+</span>
+
+### 实现千分位方法
