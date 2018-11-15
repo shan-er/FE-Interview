@@ -6,7 +6,8 @@
     - [什么是深浅拷贝](#什么是深浅拷贝)
     - [sessionStorage，localStorage，cookie区别](#sessionStorage-localStorage-cookie区别)
     - [数组中常用的方法](#数组中常用的方法)
-- [编程相关](#编程相关)
+- [编程相关](#编程相关) 
+    - [判断一个对象是否是数组](#判断一个对象是否是数组)
     - [实现深拷贝](#实现深拷贝)
     - [实现千分位方法](#实现千分位方法)
 
@@ -65,9 +66,9 @@
 ### 什么是深浅拷贝
 浅拷贝针对对象中的基本类型的值生效，但是对引用类型中还有引用类型的情况就会失效。
 
-深拷贝是针对对象中还有引用类型的情况，使用深拷贝可以使新创建的对象和原来的完全脱离关系。
+深拷贝是针对对象中还有引用类型的情况，使用深拷贝可以使新创建的对象和原来的完全脱离关系。
 
-深浅拷贝的区别，其实核心的关键点就是是**只复制了第一属性还是完全复制了所有的属性。**
+深浅拷贝的区别，其实核心的关键点就是**只复制了第一属性还是完全复制了所有的属性。**
 
 <span style="color: grey">
 
@@ -94,9 +95,32 @@
 
 
 ### 数组中常用的方法
-详情清查看链接 [js数组常用方法 ES5/ES6+](https://blog.csdn.net/Scarlett_Dream/article/details/83927914)
+详情请查看链接 [js数组常用方法 ES5/ES6+](https://blog.csdn.net/Scarlett_Dream/article/details/83927914)
 1. ES5及以下: join、reverse、push、pop、unshift、shift、sort、concat、slice、splice、toString、toLocaleString、indexOf、lastIndexOf、forEach、map、filter、some、every、reduce、reduceRight
 2. ES6及以上: Array.from、Array.of、copyWithin、find、findIndex、fill、entries、keys、values、includes、flat、flatMap
+
+
+### 判断一个对象是否是数组
+1. Array.isArray(): 需注意浏览器是否支持该函数。
+![Array.isArray()浏览器支持](../imgs/isArray.jpg)
+2. Object.prototype.toString.call()
+```
+/**
+ * 判断一个对象是否是数组，typeof不是object，返回false
+ *
+ * @param {Object} arg 需要测试是否为数组的对象
+ * @return {Boolean} 传入参数是数组返回true，否则返回false
+ */
+function isArray(arg) {
+    return typeof arg === 'object'
+        ? Object.prototype.toString.call(arg) === '[object Array]'
+        : false;
+}
+```
+<span style="color: grey">
+
+    关联点： typeof
+</span>
 
 
 ### 实现深拷贝
@@ -193,3 +217,67 @@ lodash.cloneDeep()
 </span>
 
 ### 实现千分位方法
+1. toLocaleString()
+```
+let num = 10000023.23;
+num.toLocaleString(); //"10,000,023.23"
+```
+2. 正则
+```
+let num = 10000023.23;
+let numArray = num.toString().split('.');
+numArray[0] = numArray[0].replace(/(\d)(?=(?:\d{3})+$)/g,'$1,');
+numArray.join('.');  //"10,000,023.23"
+```
+3. 普通for循环
+```
+function format(num){
+    let numArray = num.toString().split('.');
+
+    let str = '';v//字符串累加
+    for(var i = numArray[0].length - 1, j = 1; i >= 0; i--, j++){  
+        if(j%3 == 0 && i!=0){ //每隔三位加逗号，过滤正好在第一个数字的情况
+            str += numArray[0][i] + ',';
+            continue;  
+        }  
+        str += numArray[0][i];
+    } 
+    return str.split('').reverse().join('') + '.' + numArray[1];//字符串=>数组=>反转=>字符串
+}
+let num = 10000023.23;
+format(num); //"10,000,023.23"
+```
+4. slice+while循环
+```
+function format(num) {
+    let numArray = num.toString().split('.');
+    let arr = [],
+        str = numArray[0],
+        count = str.length;
+
+    while (count >= 3) {
+        arr.unshift(str.slice(count - 3, count));
+        count -= 3;
+    }
+
+    // 如果不是3的倍数就另外追加到上去
+    str.length % 3 && arr.unshift(str.slice(0, str.length % 3));
+
+    return arr.toString() + '.' + numArray[1];
+}
+let num = 10000023.23;
+format(num); //"10,000,023.23"
+```
+5. reduce
+```
+function format(num) {
+    let numArray = num.toString().split('.');
+    let str = numArray[0];
+    let str1 = str.split('').reverse().reduce((prev, next, index) => {
+        return ((index % 3) ? next : (next + ',')) + prev;
+    });
+    return str1 + '.' + numArray[1];
+}
+let num = 10000023.23;
+format(num); //"10,000,023.23"
+```
